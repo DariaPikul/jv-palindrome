@@ -21,21 +21,11 @@ public class Palindrome {
      * <p>Результат: true</p>
      */
     public boolean isPalindrome(String text) {
-        int check = 0;
-        String original = text.replaceAll("[^a-zA-Z0-9_-]", "")
+        String original = text.replaceAll("[^a-zA-Z0-9_]", "")
                 .replaceAll(" ", "").toLowerCase();
-        int length = original.length();
-        if (length > 1) {
-            for (int i = 0; i < length / 2; i++) {
-                if (original.length() % 2 == 0) {
-                    check = original.charAt(length / 2 + i)
-                            == original.charAt(length / 2 - i - 1) ? 1 : 0;
-                } else {
-                    check = original.charAt(length / 2 + i + 1)
-                            == original.charAt(length / 2 - i - 1) ? 1 : 0;
-                }
-            }
-        }
-        return check == 1;
+        StringBuilder firstPart =
+                new StringBuilder(original.substring(0, original.length() / 2));
+        return firstPart.reverse().toString()
+                .equals(original.substring((int) Math.ceil(original.length() / 2.0)));
     }
 }
